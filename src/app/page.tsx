@@ -1,269 +1,349 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Mail, Code, MapPin, Database, Award, ExternalLink } from "lucide-react";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-
-const GithubIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3-.3 6-1.5 6-6.5a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 5 3 6.2 6 6.5a4.8 4.8 0 0 0-1 3.2v4"></path>
-  </svg>
-);
-
-const LinkedinIcon = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect width="4" height="12" x="2" y="9"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2
-    }
-  }
-};
+import Image from "next/image";
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const marqueeText = [
+    "Machine Learning", "Data Analytics", "Python", "SQL", "PostgreSQL",
+    "Tableau", "Pandas", "NumPy", "Figma", "NLP", "GenAI"
+  ];
+
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground font-sans selection:bg-primary/30">
+    <div className="flex flex-col min-h-screen">
       
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 w-full backdrop-blur-md border-b border-border/40 bg-background/80">
-        <div className="container max-w-4xl mx-auto px-6 h-16 flex items-center justify-between">
-          <span className="font-bold tracking-tight text-lg">yash<span className="text-primary">.dev</span></span>
-          <div className="flex gap-4">
-            <Link href="https://github.com" target="_blank" className={buttonVariants({ variant: "ghost", size: "icon" })}>
-              <GithubIcon className="w-5 h-5" />
-            </Link>
-            <Link href="https://linkedin.com" target="_blank" className={buttonVariants({ variant: "ghost", size: "icon" })}>
-              <LinkedinIcon className="w-5 h-5" />
-            </Link>
-          </div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 px-6 md:px-11 py-5 transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] flex justify-between items-center ${scrolled ? 'top-4 md:left-[22%] md:right-[22%] bg-background/80 backdrop-blur-xl shadow-2xl rounded-full py-3 md:px-9 border border-border/50' : ''}`}>
+        <Link href="#hero" className="font-syne font-extrabold text-[15px] tracking-tight hover:opacity-70 transition-opacity">
+          yash.dev
+        </Link>
+        <div className="hidden md:flex items-center gap-9">
+          <ul className="flex gap-7">
+            <li><Link href="#work" className="text-[12px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-0 after:bg-foreground hover:after:w-full after:transition-all after:duration-300">Work</Link></li>
+            <li><Link href="#about" className="text-[12px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-0 after:bg-foreground hover:after:w-full after:transition-all after:duration-300">About</Link></li>
+            <li><Link href="#contact" className="text-[12px] uppercase tracking-[0.1em] text-muted-foreground hover:text-foreground relative after:absolute after:bottom-[-2px] after:left-0 after:h-[1px] after:w-0 after:bg-foreground hover:after:w-full after:transition-all after:duration-300">Contact</Link></li>
+          </ul>
         </div>
       </nav>
 
-      <main className="flex-1 container max-w-4xl mx-auto px-6 py-12 md:py-24 flex flex-col gap-24">
+      <main className="flex-1">
         
         {/* Hero Section */}
-        <motion.section 
-          initial="hidden" 
-          animate="visible" 
-          variants={fadeIn}
-          className="flex flex-col gap-6"
-        >
-          <div className="flex flex-col gap-2">
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tighter">
-              Hi, I'm Yash Agarwal
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground font-medium flex items-center gap-2">
-              <Code className="w-6 h-6" /> Data-Driven CS Student (AI & ML)
+        <section id="hero" className="min-h-[100svh] flex flex-col justify-end px-6 md:px-11 pb-[max(56px,calc(56px+env(safe-area-inset-bottom)))] relative">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            <p className="text-[11px] tracking-[0.14em] uppercase text-muted-foreground mb-5 overflow-hidden py-1">
+              <motion.span 
+                initial={{ y: "110%" }} 
+                animate={{ y: 0 }} 
+                transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
+                className="inline-block"
+              >
+                Data-Driven CS Student (AI & ML)
+              </motion.span>
             </p>
-          </div>
-          <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-            Passionate about building interactive dashboards, uncovering insights through exploratory analytics, and creating machine learning models. I specialize in turning complex, real-world datasets into actionable intelligence.
-          </p>
-          <div className="flex gap-4 pt-4">
-            <Link href="mailto:yash.agarwal2024@nst.rishihood.edu.in" className={buttonVariants({ variant: "default" })}>
-              <Mail className="w-4 h-4 mr-2" /> Contact Me
-            </Link>
-            <Link href="#projects" className={buttonVariants({ variant: "outline" })}>
-              View Projects
-            </Link>
-          </div>
-        </motion.section>
 
-        <Separator className="bg-border/50" />
+            <h1 className="hero-title flex flex-col">
+              <span className="overflow-hidden block py-1">
+                <motion.span initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 1.05, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.05 }} className="block">Yash</motion.span>
+              </span>
+              <span className="overflow-hidden block py-1">
+                <motion.span initial={{ y: "110%" }} animate={{ y: 0 }} transition={{ duration: 1.05, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.15 }} className="block">Agarwal</motion.span>
+              </span>
+            </h1>
 
-        {/* Experience / Education */}
-        <motion.section 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true }} 
-          variants={fadeIn}
-          className="flex flex-col gap-8"
-        >
-          <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <Award className="w-6 h-6 text-primary" /> Education & Extracurricular
-          </h2>
-          
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-card/50 border-border/50 shadow-sm backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">B.Tech in AI & ML</CardTitle>
-                <CardDescription>Rishihood University • 2024 - 2028</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Current Grade: 8.229/10.0</p>
-                <p className="text-sm text-muted-foreground mt-2">Specializing in Machine Learning, Data Analytics, and Software Development.</p>
-              </CardContent>
-            </Card>
+            <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+              <motion.p 
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, ease: "easeOut", delay: 0.65 }}
+                className="max-w-[360px] text-[15px] leading-[1.65] text-muted-foreground font-light"
+              >
+                Passionate about building interactive dashboards, uncovering insights through exploratory analytics, and turning real-world datasets into actionable intelligence.
+              </motion.p>
+              
+              <div className="flex flex-col items-start md:items-end gap-2.5">
+                <motion.div initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.55, delay: 0.75 }} className="inline-flex items-center gap-[7px] text-[11px] tracking-[0.09em] uppercase border border-[#00DC64]/30 text-[#00DC64] px-3.5 py-[7px] rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-current animate-blink"></span>
+                  Open for opportunities
+                </motion.div>
+                <motion.div initial={{ opacity: 0, x: 32 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.55, delay: 0.85 }} className="inline-flex items-center gap-[7px] text-[11px] tracking-[0.09em] uppercase border border-border text-muted-foreground px-3.5 py-[7px] rounded-full">
+                  Based in India
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
 
-            <Card className="bg-card/50 border-border/50 shadow-sm backdrop-blur-sm">
-              <CardHeader>
-                <CardTitle className="text-lg">AI Club Startup (Fashion Culture Lab)</CardTitle>
-                <CardDescription>Extracurricular Activity</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-muted-foreground">Working at the intersection of computer vision, fashion, and cultural analytics to build AI-driven visual understanding systems.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </motion.section>
+          <motion.div 
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.6 }}
+            className="absolute top-[110px] right-11 hidden md:flex flex-col items-center gap-2.5"
+          >
+            <div className="w-[1px] h-[64px] bg-border relative overflow-hidden">
+              <div className="absolute top-[-100%] left-0 w-full h-full bg-primary animate-shline"></div>
+            </div>
+            <span className="text-[9px] tracking-[0.18em] uppercase text-muted-foreground" style={{ writingMode: 'vertical-lr' }}>Scroll</span>
+          </motion.div>
+        </section>
 
-        {/* Projects */}
-        <motion.section 
-          id="projects"
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true }} 
-          variants={staggerContainer}
-          className="flex flex-col gap-8"
-        >
-          <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <Database className="w-6 h-6 text-primary" /> Featured Projects
-          </h2>
-
-          <div className="grid grid-cols-1 gap-6">
-            <motion.div variants={fadeIn}>
-              <Card className="bg-card/40 border-border/50 hover:bg-card/60 transition-colors">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-xl">Uber Trip & Revenue Analytics Dashboard</CardTitle>
-                      <CardDescription className="mt-1">April 2026</CardDescription>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><GithubIcon className="h-4 w-4" /></Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><ExternalLink className="h-4 w-4" /></Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Revenue trends & trip distribution (hourly patterns)</li>
-                    <li>Distance vs fare correlation using scatter analysis</li>
-                    <li>Payment method & city-wise fare comparison</li>
-                    <li>Trip status breakdown + KPI tracking</li>
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Tableau</Badge>
-                  <Badge variant="secondary">Data Analytics</Badge>
-                  <Badge variant="secondary">Python</Badge>
-                </CardFooter>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeIn}>
-              <Card className="bg-card/40 border-border/50 hover:bg-card/60 transition-colors">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-xl">UK Road Accident Risk & Safety Analytics</CardTitle>
-                      <CardDescription className="mt-1">April 2026</CardDescription>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><GithubIcon className="h-4 w-4" /></Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><ExternalLink className="h-4 w-4" /></Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Time-series analysis of accident trends (year-wise patterns)</li>
-                    <li>Severity segmentation (Fatal / Serious / Slight) + KPI tracking</li>
-                    <li>Temporal hotspots (hour / day heatmaps)</li>
-                    <li>Environmental geographic analysis (weather, light, speed mapping)</li>
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Tableau</Badge>
-                  <Badge variant="secondary">Data Cleaning</Badge>
-                  <Badge variant="secondary">Geospatial</Badge>
-                </CardFooter>
-              </Card>
-            </motion.div>
-
-            <motion.div variants={fadeIn}>
-              <Card className="bg-card/40 border-border/50 hover:bg-card/60 transition-colors">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle className="text-xl">Credit Card Customer Segmentation & Risk</CardTitle>
-                      <CardDescription className="mt-1">February 2026</CardDescription>
-                    </div>
-                    <div className="flex gap-2">
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><GithubIcon className="h-4 w-4" /></Button>
-                      <Button variant="ghost" size="icon" className="h-8 w-8"><ExternalLink className="h-4 w-4" /></Button>
-                    </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                    <li>Customer segmentation based on Payment Tier, Tenure, Purchase Behavior</li>
-                    <li>Feature engineering & outlier handling (IQR, winsorization)</li>
-                    <li>Risk profiling using credit utilization bands</li>
-                    <li>Behavioral insights for targeting business strategy</li>
-                  </ul>
-                </CardContent>
-                <CardFooter className="flex flex-wrap gap-2">
-                  <Badge variant="secondary">Python</Badge>
-                  <Badge variant="secondary">Machine Learning</Badge>
-                  <Badge variant="secondary">Pandas</Badge>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          </div>
-        </motion.section>
-
-        {/* Skills */}
-        <motion.section 
-          initial="hidden" 
-          whileInView="visible" 
-          viewport={{ once: true }} 
-          variants={fadeIn}
-          className="flex flex-col gap-6"
-        >
-          <h2 className="text-2xl font-bold tracking-tight">Skills & Technologies</h2>
-          <div className="flex flex-wrap gap-3">
-            {["Machine Learning", "Python", "SQL", "PostgreSQL", "Tableau", "Pandas", "NumPy", "Matplotlib", "Figma", "Natural Language Processing", "Git & Github", "GenAI"].map((skill) => (
-              <Badge key={skill} variant="outline" className="px-3 py-1 text-sm border-primary/20 bg-primary/5 hover:bg-primary/10 transition-colors">
-                {skill}
-              </Badge>
+        {/* Marquee Section */}
+        <div className="border-y border-border py-3.5 overflow-hidden whitespace-nowrap bg-background group flex">
+          <div className="inline-flex animate-marquee group-hover:[animation-play-state:paused]">
+            {[...marqueeText, ...marqueeText, ...marqueeText].map((text, i) => (
+              <span key={i} className="font-syne text-[11px] font-semibold tracking-[0.12em] uppercase text-muted-foreground px-7 inline-flex items-center gap-14 after:content-['✦'] after:text-[7px]">
+                {text}
+              </span>
             ))}
           </div>
-        </motion.section>
+        </div>
+
+        {/* Work Section */}
+        <section id="work" className="py-[80px] md:py-[120px] px-6 md:px-11">
+          <div className="flex justify-between items-center pb-5 border-b border-border mb-10 md:mb-16">
+            <div>
+              <p className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-2">Selected Projects</p>
+              <h2 className="s-title flex"><span className="overflow-hidden py-1"><motion.span initial={{ y: "110%" }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 1.05 }} className="block">Work</motion.span></span></h2>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+            
+            {/* Project 01: Credit Card Dashboard */}
+            <motion.article 
+              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75 }}
+              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
+            >
+              <div className="grid md:grid-cols-2 min-h-[400px]">
+                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                  <div className="flex items-start justify-between">
+                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">01</span>
+                    <div className="flex flex-wrap gap-1.5 justify-end">
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Excel Dashboard</span>
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">February 2026</p>
+                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Credit Card Customer Segmentation</h3>
+                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                      Customer segmentation based on Payment Tier, Tenure, and Purchase Behavior with detailed behavioral insights for targeted strategy.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group">
+                  <div className="pcard-bg bg-gradient-to-br from-[#001209] via-[#003A16] to-[#006B28]"></div>
+                  <Image src="/image copy 2.png" alt="Credit Card Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top" />
+                  
+                  {/* Arrow Icon */}
+                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
+                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+            {/* Project 02: UK Road Safety */}
+            <motion.article 
+              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.1 }}
+              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
+            >
+              <div className="grid md:grid-cols-2 min-h-[400px]">
+                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                  <div className="flex items-start justify-between">
+                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">02</span>
+                    <div className="flex flex-wrap gap-1.5 justify-end">
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Geospatial</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
+                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">UK Road Accident Risk & Safety Analytics</h3>
+                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                      Time-series analysis of accident trends, severity segmentation, and temporal hotspots using environmental geographic mapping.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group bg-secondary">
+                  <div className="pcard-bg bg-gradient-to-br from-[#1A0A00] via-[#4A2000] to-[#CC5500]"></div>
+                  <div className="blob w-[310px] h-[310px] top-[-70px] right-[-60px] bg-[#F97316] z-0"></div>
+                  <div className="blob w-[190px] h-[190px] bottom-[40px] right-[80px] bg-[#FED7AA] opacity-10 z-0"></div>
+                  <Image src="/image.png" alt="UK Road Safety Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
+                  
+                  {/* Arrow Icon */}
+                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
+                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+            {/* Project 03: Uber Dashboard */}
+            <motion.article 
+              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.2 }}
+              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
+            >
+              <div className="grid md:grid-cols-2 min-h-[400px]">
+                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                  <div className="flex items-start justify-between">
+                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">03</span>
+                    <div className="flex flex-wrap gap-1.5 justify-end">
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
+                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+                    </div>
+                  </div>
+                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
+                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Uber Trip & Revenue Analytics</h3>
+                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                      Revenue trends, trip distribution, distance vs fare correlation, and payment method comparison dashboard.
+                    </p>
+                  </div>
+                </div>
+                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group bg-secondary">
+                  <div className="pcard-bg bg-gradient-to-br from-[#000B35] via-[#001F82] to-[#0050FF]"></div>
+                  <div className="blob w-[320px] h-[320px] top-[-80px] right-[-60px] bg-[#3B82F6] z-0"></div>
+                  <div className="blob w-[200px] h-[200px] bottom-[20px] right-[80px] bg-[#93C5FD] opacity-10 z-0"></div>
+                  <Image src="/image copy.png" alt="Uber Trip Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
+                  
+                  {/* Arrow Icon */}
+                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
+                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </motion.article>
+
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-[80px] md:py-[120px] px-6 md:px-11">
+          <div className="flex justify-between items-center pb-5 border-b border-border mb-10 md:mb-16">
+            <div>
+              <p className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-2">My Story</p>
+              <h2 className="s-title flex"><span className="overflow-hidden py-1"><motion.span initial={{ y: "110%" }} whileInView={{ y: 0 }} viewport={{ once: true }} transition={{ duration: 1.05 }}>About</motion.span></span></h2>
+            </div>
+          </div>
+
+          <div className="grid md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-20 mt-12 md:mt-20">
+            <div className="flex flex-col gap-6">
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-[clamp(17px,1.7vw,22px)] leading-[1.62] font-light text-muted-foreground">
+                <strong className="font-light text-foreground">Data-Driven CS Student</strong> with a passion for building intelligent systems. Currently pursuing my B.Tech in AI & ML at Rishihood University (2024 - 2028).
+              </motion.p>
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="text-[clamp(17px,1.7vw,22px)] leading-[1.62] font-light text-muted-foreground">
+                <strong className="font-light text-foreground">My approach is analytical.</strong> I specialize in turning complex, real-world datasets into actionable intelligence through exploratory data analysis and modern visualization tools like Tableau.
+              </motion.p>
+              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-[clamp(17px,1.7vw,22px)] leading-[1.62] font-light text-muted-foreground">
+                Beyond my coursework, I'm involved in the <strong className="font-light text-foreground">AI Club Startup (Fashion Culture Lab)</strong>, working at the intersection of computer vision, fashion, and cultural analytics to build AI-driven visual understanding systems.
+              </motion.p>
+              
+              <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="mt-4">
+                <a href="https://github.com" target="_blank" rel="noopener" className="inline-flex items-center gap-[7px] bg-transparent border border-border rounded-full px-[15px] py-[7px] text-[11px] tracking-[0.08em] uppercase text-muted-foreground transition-all hover:bg-foreground hover:text-background hover:border-foreground group">
+                  View GitHub
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-[3px]">
+                    <path d="M2 12L12 2M12 2H4M12 2V10"/>
+                  </svg>
+                </a>
+              </motion.div>
+            </div>
+
+            <div className="flex flex-col gap-11">
+              <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
+                <h3 className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-4">Education</h3>
+                <ul className="flex flex-col">
+                  <li className="flex justify-between items-baseline py-3.5 border-b border-border gap-3">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-syne text-[14px] font-bold tracking-[-0.01em]">B.Tech in AI & ML</span>
+                      <span className="text-[12px] text-muted-foreground">Rishihood University</span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground whitespace-nowrap shrink-0">2024 - 2028</span>
+                  </li>
+                  <li className="flex justify-between items-baseline py-3.5 border-b border-border gap-3">
+                    <div className="flex flex-col gap-0.5">
+                      <span className="font-syne text-[14px] font-bold tracking-[-0.01em]">AI Club Startup</span>
+                      <span className="text-[12px] text-muted-foreground">Fashion Culture Lab</span>
+                    </div>
+                    <span className="text-[11px] text-muted-foreground whitespace-nowrap shrink-0">Extracurricular</span>
+                  </li>
+                </ul>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
+                <h3 className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-4">Skills</h3>
+                <div className="flex flex-wrap gap-[7px]">
+                  {["Machine Learning", "Python", "SQL", "Tableau", "Pandas", "NumPy", "NLP", "Git & Github", "GenAI"].map((skill) => (
+                    <span key={skill} className="text-[11px] tracking-[0.06em] px-3.5 py-1.5 border border-border rounded-full text-muted-foreground">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-[80px] md:py-[120px] px-6 md:px-11">
+          <p className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-2">Get in touch</p>
+
+          <div className="font-syne text-[clamp(52px,9vw,130px)] font-extrabold tracking-[-0.045em] leading-[0.88] my-14 md:my-[72px]">
+            <motion.span initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="block">Say hi!</motion.span>
+            <motion.span initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.1 }} className="block mt-4 md:mt-0">
+              <a href="mailto:yash.agarwal2024@nst.rishihood.edu.in" className="relative inline-block transition-colors hover:text-primary group">
+                Let's talk 
+                <svg width="0.7em" height="0.7em" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block align-middle mb-[0.12em] ml-2">
+                  <path d="M3 15L15 3M15 3H5M15 3V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <span className="absolute bottom-1.5 left-0 w-0 h-1 bg-primary transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:w-full"></span>
+              </a>
+            </motion.span>
+          </div>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex flex-col md:flex-row justify-between items-start md:items-end pt-9 gap-6 md:gap-0">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-center gap-2 group cursor-pointer" onClick={() => navigator.clipboard.writeText('yash.agarwal2024@nst.rishihood.edu.in')}>
+                <p className="text-[13px] text-muted-foreground leading-[1.7]">yash.agarwal2024@nst.rishihood.edu.in</p>
+                <button className="opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground">
+                  <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="4.5" y="4.5" width="7" height="7" rx="1.2"/>
+                    <path d="M1.5 8.5V2.5a1 1 0 0 1 1-1h6"/>
+                  </svg>
+                </button>
+              </div>
+              <p className="text-[13px] text-muted-foreground leading-[1.7]">Based in India</p>
+            </div>
+            <div className="flex gap-6">
+              <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">LinkedIn</a>
+              <a href="https://github.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">GitHub</a>
+              <a href="https://kaggle.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">Kaggle</a>
+            </div>
+          </motion.div>
+
+          <p className="text-[11px] text-muted-foreground mt-8 text-center pt-8 border-t border-border">
+            © {new Date().getFullYear()} Yash Agarwal · Data-Driven CS Student
+          </p>
+        </section>
 
       </main>
-
-      {/* Footer */}
-      <footer className="border-t border-border/40 bg-muted/20 py-8 mt-12">
-        <div className="container max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© {new Date().getFullYear()} Yash Agarwal. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="https://github.com" className="hover:text-foreground transition-colors">Github</Link>
-            <Link href="https://linkedin.com" className="hover:text-foreground transition-colors">LinkedIn</Link>
-            <Link href="https://kaggle.com" className="hover:text-foreground transition-colors">Kaggle</Link>
-            <Link href="https://leetcode.com" className="hover:text-foreground transition-colors">LeetCode</Link>
-          </div>
-        </div>
-      </footer>
-
     </div>
   );
 }

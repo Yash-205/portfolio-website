@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Syne } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const syne = Syne({
   subsets: ["latin"],
+  variable: "--font-syne",
+  weight: ["700", "800"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Yash Agarwal - Portfolio",
-  description: "Data-driven CS student skilled in Tableau, data cleaning, and exploratory analytics.",
+  title: "Yash Agarwal — Data-Driven CS Student",
+  description: "Data-driven CS student skilled in Data Analytics, Excel, and Machine Learning.",
 };
 
 export default function RootLayout({
@@ -23,11 +26,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`dark ${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col bg-background text-foreground">{children}</body>
+    <html lang="en" className={`dark ${inter.variable} ${syne.variable} scroll-smooth`}>
+      <body className="font-sans bg-background text-foreground overflow-x-hidden min-h-screen">
+        {children}
+      </body>
     </html>
   );
 }
