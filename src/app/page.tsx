@@ -15,8 +15,8 @@ export default function Home() {
   }, []);
 
   const marqueeText = [
-    "Machine Learning", "Data Analytics", "Python", "SQL", "PostgreSQL",
-    "Tableau", "Pandas", "NumPy", "Figma", "NLP", "GenAI"
+    "Tableau", "Excel", "Google Sheets", "Data Analytics", "Python", 
+    "SQL", "PostgreSQL", "Pandas", "NumPy", "Figma", "Git & Github"
   ];
 
   return (
@@ -52,7 +52,7 @@ export default function Home() {
                 transition={{ duration: 0.75, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.5 }}
                 className="inline-block"
               >
-                Data-Driven CS Student (AI & ML)
+                Data-Driven CS Student
               </motion.span>
             </p>
 
@@ -121,116 +121,122 @@ export default function Home() {
           <div className="flex flex-col gap-4">
             
             {/* Project 01: Credit Card Dashboard */}
-            <motion.article 
-              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75 }}
-              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
-            >
-              <div className="grid md:grid-cols-2 min-h-[400px]">
-                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">01</span>
-                    <div className="flex flex-wrap gap-1.5 justify-end">
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Excel Dashboard</span>
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+            <Link href="https://docs.google.com/spreadsheets/d/1F81IYu2lrdZ4tq7AX_7mjzvp2qbw6P-RYYmu5C3b0uk/edit?gid=1469584910#gid=1469584910" target="_blank" rel="noopener noreferrer" className="block">
+              <motion.article 
+                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75 }}
+                className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover group"
+              >
+                <div className="grid md:grid-cols-2 min-h-[400px]">
+                  <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">01</span>
+                      <div className="flex flex-wrap gap-1.5 justify-end">
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Excel Dashboard</span>
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                      <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">February 2026</p>
+                      <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Credit Card Customer Segmentation</h3>
+                      <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                        Customer segmentation based on Payment Tier, Tenure, and Purchase Behavior with detailed behavioral insights for targeted strategy.
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
-                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">February 2026</p>
-                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Credit Card Customer Segmentation</h3>
-                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
-                      Customer segmentation based on Payment Tier, Tenure, and Purchase Behavior with detailed behavioral insights for targeted strategy.
-                    </p>
+                  <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2">
+                    <div className="pcard-bg bg-gradient-to-br from-[#001209] via-[#003A16] to-[#006B28]"></div>
+                    <Image src="/image copy 2.png" alt="Credit Card Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top" />
+                    
+                    {/* Arrow Icon */}
+                    <div className="absolute bottom-6 right-6 w-11 h-11 bg-background/50 backdrop-blur-xl border border-border/50 rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:border-primary group-hover:rotate-45 z-30 shadow-2xl">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" className="text-foreground transition-colors duration-500 group-hover:text-primary-foreground" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group">
-                  <div className="pcard-bg bg-gradient-to-br from-[#001209] via-[#003A16] to-[#006B28]"></div>
-                  <Image src="/image copy 2.png" alt="Credit Card Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top" />
-                  
-                  {/* Arrow Icon */}
-                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
-                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Link>
 
             {/* Project 02: UK Road Safety */}
-            <motion.article 
-              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.1 }}
-              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
-            >
-              <div className="grid md:grid-cols-2 min-h-[400px]">
-                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">02</span>
-                    <div className="flex flex-wrap gap-1.5 justify-end">
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Geospatial</span>
+            <Link href="https://public.tableau.com/app/profile/dev.kothari/viz/UKAccidentAnalysis2_17774736712620/Dashboard1" target="_blank" rel="noopener noreferrer" className="block">
+              <motion.article 
+                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.1 }}
+                className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover group"
+              >
+                <div className="grid md:grid-cols-2 min-h-[400px]">
+                  <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">02</span>
+                      <div className="flex flex-wrap gap-1.5 justify-end">
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Geospatial</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                      <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
+                      <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">UK Road Accident Risk & Safety Analytics</h3>
+                      <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                        Time-series analysis of accident trends, severity segmentation, and temporal hotspots using environmental geographic mapping.
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
-                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
-                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">UK Road Accident Risk & Safety Analytics</h3>
-                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
-                      Time-series analysis of accident trends, severity segmentation, and temporal hotspots using environmental geographic mapping.
-                    </p>
+                  <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 bg-secondary">
+                    <div className="pcard-bg bg-gradient-to-br from-[#1A0A00] via-[#4A2000] to-[#CC5500]"></div>
+                    <div className="blob w-[310px] h-[310px] top-[-70px] right-[-60px] bg-[#F97316] z-0"></div>
+                    <div className="blob w-[190px] h-[190px] bottom-[40px] right-[80px] bg-[#FED7AA] opacity-10 z-0"></div>
+                    <Image src="/image.png" alt="UK Road Safety Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
+                    
+                    {/* Arrow Icon */}
+                    <div className="absolute bottom-6 right-6 w-11 h-11 bg-background/50 backdrop-blur-xl border border-border/50 rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:border-primary group-hover:rotate-45 z-30 shadow-2xl">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" className="text-foreground transition-colors duration-500 group-hover:text-primary-foreground" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group bg-secondary">
-                  <div className="pcard-bg bg-gradient-to-br from-[#1A0A00] via-[#4A2000] to-[#CC5500]"></div>
-                  <div className="blob w-[310px] h-[310px] top-[-70px] right-[-60px] bg-[#F97316] z-0"></div>
-                  <div className="blob w-[190px] h-[190px] bottom-[40px] right-[80px] bg-[#FED7AA] opacity-10 z-0"></div>
-                  <Image src="/image.png" alt="UK Road Safety Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
-                  
-                  {/* Arrow Icon */}
-                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
-                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Link>
 
             {/* Project 03: Uber Dashboard */}
-            <motion.article 
-              initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.2 }}
-              className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover"
-            >
-              <div className="grid md:grid-cols-2 min-h-[400px]">
-                <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
-                  <div className="flex items-start justify-between">
-                    <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">03</span>
-                    <div className="flex flex-wrap gap-1.5 justify-end">
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
-                      <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+            <Link href="https://public.tableau.com/app/profile/yash.agarwal8713/viz/Uber_Analysis_17772871663900/UberDashboard2" target="_blank" rel="noopener noreferrer" className="block">
+              <motion.article 
+                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.2 }}
+                className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover group"
+              >
+                <div className="grid md:grid-cols-2 min-h-[400px]">
+                  <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">03</span>
+                      <div className="flex flex-wrap gap-1.5 justify-end">
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Tableau</span>
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">Data Analytics</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                      <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
+                      <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Uber Trip & Revenue Analytics</h3>
+                      <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                        Revenue trends, trip distribution, distance vs fare correlation, and payment method comparison dashboard.
+                      </p>
                     </div>
                   </div>
-                  <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
-                    <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">April 2026</p>
-                    <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Uber Trip & Revenue Analytics</h3>
-                    <p className="text-sm text-muted-foreground mt-2 max-w-sm">
-                      Revenue trends, trip distribution, distance vs fare correlation, and payment method comparison dashboard.
-                    </p>
+                  <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group bg-secondary">
+                    <div className="pcard-bg bg-gradient-to-br from-[#000B35] via-[#001F82] to-[#0050FF]"></div>
+                    <div className="blob w-[320px] h-[320px] top-[-80px] right-[-60px] bg-[#3B82F6] z-0"></div>
+                    <div className="blob w-[200px] h-[200px] bottom-[20px] right-[80px] bg-[#93C5FD] opacity-10 z-0"></div>
+                    <Image src="/image copy.png" alt="Uber Trip Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
+                    
+                    {/* Arrow Icon */}
+                    <div className="absolute bottom-6 right-6 w-11 h-11 bg-background/50 backdrop-blur-xl border border-border/50 rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:border-primary group-hover:rotate-45 z-30 shadow-2xl">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" className="text-foreground transition-colors duration-500 group-hover:text-primary-foreground" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
                   </div>
                 </div>
-                <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2 group bg-secondary">
-                  <div className="pcard-bg bg-gradient-to-br from-[#000B35] via-[#001F82] to-[#0050FF]"></div>
-                  <div className="blob w-[320px] h-[320px] top-[-80px] right-[-60px] bg-[#3B82F6] z-0"></div>
-                  <div className="blob w-[200px] h-[200px] bottom-[20px] right-[80px] bg-[#93C5FD] opacity-10 z-0"></div>
-                  <Image src="/image copy.png" alt="Uber Trip Dashboard" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
-                  
-                  {/* Arrow Icon */}
-                  <div className="absolute bottom-6 right-6 w-11 h-11 border border-white/20 rounded-full flex items-center justify-center transition-all duration-300 group-hover:bg-white group-hover:border-white group-hover:rotate-45 z-30">
-                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" className="group-hover:stroke-black">
-                      <path d="M2 12L12 2M12 2H4M12 2V10" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
+              </motion.article>
+            </Link>
 
           </div>
         </section>
@@ -257,7 +263,7 @@ export default function Home() {
               </motion.p>
               
               <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="mt-4">
-                <a href="https://github.com" target="_blank" rel="noopener" className="inline-flex items-center gap-[7px] bg-transparent border border-border rounded-full px-[15px] py-[7px] text-[11px] tracking-[0.08em] uppercase text-muted-foreground transition-all hover:bg-foreground hover:text-background hover:border-foreground group">
+                <a href="https://github.com/Yash-205" target="_blank" rel="noopener" className="inline-flex items-center gap-[7px] bg-transparent border border-border rounded-full px-[15px] py-[7px] text-[11px] tracking-[0.08em] uppercase text-muted-foreground transition-all hover:bg-foreground hover:text-background hover:border-foreground group">
                   View GitHub
                   <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-[3px]">
                     <path d="M2 12L12 2M12 2H4M12 2V10"/>
@@ -290,7 +296,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
                 <h3 className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-4">Skills</h3>
                 <div className="flex flex-wrap gap-[7px]">
-                  {["Machine Learning", "Python", "SQL", "Tableau", "Pandas", "NumPy", "NLP", "Git & Github", "GenAI"].map((skill) => (
+                  {["Tableau", "Excel", "Google Sheets", "Python", "SQL", "Pandas", "NumPy", "Git & Github", "Figma", "Data Analytics"].map((skill) => (
                     <span key={skill} className="text-[11px] tracking-[0.06em] px-3.5 py-1.5 border border-border rounded-full text-muted-foreground">
                       {skill}
                     </span>
@@ -308,7 +314,7 @@ export default function Home() {
           <div className="font-syne text-[clamp(52px,9vw,130px)] font-extrabold tracking-[-0.045em] leading-[0.88] my-14 md:my-[72px]">
             <motion.span initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9 }} className="block">Say hi!</motion.span>
             <motion.span initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.1 }} className="block mt-4 md:mt-0">
-              <a href="mailto:yash.agarwal2024@nst.rishihood.edu.in" className="relative inline-block transition-colors hover:text-primary group">
+              <a href="https://www.linkedin.com/in/yash-agarwal-7a840234a" target="_blank" rel="noopener noreferrer" className="relative inline-block transition-colors hover:text-primary group">
                 Let's talk 
                 <svg width="0.7em" height="0.7em" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" className="inline-block align-middle mb-[0.12em] ml-2">
                   <path d="M3 15L15 3M15 3H5M15 3V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -332,9 +338,9 @@ export default function Home() {
               <p className="text-[13px] text-muted-foreground leading-[1.7]">Based in India</p>
             </div>
             <div className="flex gap-6">
-              <a href="https://linkedin.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">LinkedIn</a>
-              <a href="https://github.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">GitHub</a>
-              <a href="https://kaggle.com" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">Kaggle</a>
+              <a href="https://www.linkedin.com/in/yash-agarwal-7a840234a" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">LinkedIn</a>
+              <a href="https://github.com/Yash-205" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">GitHub</a>
+              <a href="https://www.kaggle.com/" target="_blank" rel="noopener" className="text-[11px] tracking-[0.1em] uppercase text-muted-foreground hover:text-foreground transition-colors">Kaggle</a>
             </div>
           </motion.div>
 
