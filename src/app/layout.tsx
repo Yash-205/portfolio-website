@@ -16,8 +16,8 @@ const syne = Syne({
 });
 
 export const metadata: Metadata = {
-  title: "Yash Agarwal — Data-Driven CS Student",
-  description: "Data-driven CS student skilled in Data Analytics, Excel, and Machine Learning.",
+  title: "Yash Agarwal — Full-Stack & GenAI Developer",
+  description: "Full-stack developer building scalable applications with integrated GenAI systems, specializing in React, Node.js, LLMs, and agent workflows.",
 };
 
 export default function RootLayout({
