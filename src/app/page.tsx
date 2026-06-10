@@ -202,6 +202,48 @@ export default function Home() {
               </motion.article>
             </Link>
 
+            {/* Project 03: Student Pass/Fail Predictor */}
+            <Link href="https://studentpass-fapredictingmlmodel-cr9r6kmp3swsgnsmqn6dzk.streamlit.app/" target="_blank" rel="noopener noreferrer" className="block">
+              <motion.article 
+                initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.2 }}
+                className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover group"
+              >
+                <div className="grid md:grid-cols-2 min-h-[400px]">
+                  <div className="p-7 md:p-11 flex flex-col justify-between gap-5 order-2 md:order-1">
+                    <div className="flex items-start justify-between">
+                      <span className="text-[10px] font-semibold tracking-[0.12em] text-muted-foreground">03</span>
+                      <div className="flex flex-wrap gap-1.5 justify-end">
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">XGBoost & LR</span>
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">LangGraph Agent</span>
+                        <span className="text-[9px] tracking-[0.1em] uppercase px-3 py-1 border border-border rounded-full text-muted-foreground">RAG + Groq LLM</span>
+                      </div>
+                    </div>
+                    <div className="flex-1 flex flex-col justify-start gap-3.5 py-1">
+                      <p className="text-[12px] tracking-[0.12em] uppercase text-muted-foreground mb-2">May 2026</p>
+                      <h3 className="font-sans text-[clamp(22px,2.8vw,40px)] font-extrabold tracking-[-0.03em] leading-[1.08]">Student Pass/Fail Predictor</h3>
+                      <p className="text-sm text-muted-foreground mt-2 max-w-sm">
+                        ML pipeline (XGBoost + Logistic Regression via GridSearchCV, SMOTE, KMeans) with a Streamlit dashboard. Paired with a LangGraph AI Study Coach using ChromaDB RAG, Groq LLM, and Tavily live web search.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="relative overflow-hidden h-[220px] md:h-auto order-1 md:order-2">
+                    <div className="pcard-bg bg-gradient-to-br from-[#0A0F2E] via-[#1E3A8A] to-[#0E7490]"></div>
+                    <div className="blob w-[310px] h-[310px] top-[-70px] right-[-60px] bg-[#3B82F6] z-0"></div>
+                    <div className="blob w-[190px] h-[190px] bottom-[40px] right-[80px] bg-[#06B6D4] opacity-10 z-0"></div>
+                    
+                    <Image src="/student_prediction.png" alt="Student Pass/Fail Predictor" fill sizes="(max-width: 768px) 100vw, 50vw" className="pcard-img object-cover object-left-top z-10" />
+
+                    {/* Arrow Icon */}
+                    <div className="absolute bottom-6 right-6 w-11 h-11 bg-background/50 backdrop-blur-xl border border-border/50 rounded-full flex items-center justify-center transition-all duration-500 group-hover:bg-primary group-hover:border-primary group-hover:rotate-45 z-30 shadow-2xl">
+                      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                        <path d="M2 12L12 2M12 2H4M12 2V10" stroke="currentColor" className="text-foreground transition-colors duration-500 group-hover:text-primary-foreground" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            </Link>
+
           </div>
         </section>
 
@@ -274,7 +316,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
                 <h3 className="text-[10px] tracking-[0.14em] uppercase text-muted-foreground mb-4">Skills</h3>
                 <div className="flex flex-wrap gap-[7px]">
-                  {["React", "Next.js", "Node.js", "Express JS", "TypeScript", "Python", "SQL", "MongoDB", "Prisma ORM", "LangGraph", "LLMs", "Generative AI", "Tailwind CSS", "Figma", "Git & GitHub"].map((skill) => (
+                  {["React", "Next.js", "Node.js", "Express JS", "TypeScript", "Python", "scikit-learn", "Streamlit", "SQL", "MongoDB", "ChromaDB", "Prisma ORM", "LangGraph", "LLMs", "Generative AI", "Tailwind CSS", "Figma", "Git & GitHub"].map((skill) => (
                     <span key={skill} className="text-[11px] tracking-[0.06em] px-3.5 py-1.5 border border-border rounded-full text-muted-foreground">
                       {skill}
                     </span>
