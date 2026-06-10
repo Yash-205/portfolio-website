@@ -203,7 +203,7 @@ export default function Home() {
             </Link>
 
             {/* Project 03: Student Pass/Fail Predictor */}
-            <Link href="https://studentpass-fapredictingmlmodel-cr9r6kmp3swsgnsmqn6dzk.streamlit.app/" target="_blank" rel="noopener noreferrer" className="block">
+            <Link href="https://github.com/Yash-205/student_pass-fa_predicting_ml_model" target="_blank" rel="noopener noreferrer" className="block">
               <motion.article 
                 initial={{ opacity: 0, y: 40 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 0.75, delay: 0.2 }}
                 className="pcard border border-border rounded-[var(--radius)] overflow-hidden transition-colors duration-400 hover:border-border-hover group"
